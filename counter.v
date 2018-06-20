@@ -17,7 +17,7 @@ module counter#(parameter WIDTH = 8)(
 				count = 1'b0;
 			end
 			count = count + 1;
-			$display("count is %d \n", count);
+			//$display("count is %d \n", count);
 		end
 	end
 

@@ -19,24 +19,29 @@ module tb_top;
 
 	//FOR AUTOCORRELATION TB
 	parameter SIZE = 256;
-	integer max_position, max, i;
+	integer max_position, max, i, con_counter;
 	wire[SIZE-1:0] s1, s2, s3, tmp;
 	integer con_out[SIZE-1:0];
 
 	//Whenever count increases, get con_out
-	always @(count) begin
+	always #5 begin
 		con_out[count] = s3;
 	end
 
 	assign tmp = {SIZE{1'b1}};
-	assign s1 = {tmp[127:0], 128'b0};//{512{1'b1}};
-	assign s2 = {64'b0, tmp[127:0], 192'b0};//{512{1'b1}};
+	assign s1 = {SIZE{1'b1}};
+	assign s2 = {SIZE{1'b1}};
+	//assign s1 = {tmp[127:0], 128'b0};//{512{1'b1}};
+	//assign s2 = {tmp[127:0], 128'b0};//{512{1'b1}};
+//	assign s2 = {64'b0, tmp[127:0], 192'b0};//{512{1'b1}};
 	///////////////////////////////////////
 	
 	initial begin
 		clk = 0;
 		reset = 0;
 		enable=1;
+		for(con_counter = 0; con_counter < SIZE; con_counter=con_counter+1)
+			con_out[con_counter] = 0;
 	end
 
 	initial begin
